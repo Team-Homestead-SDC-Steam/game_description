@@ -5,8 +5,12 @@ const cors = require('cors');
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
 const app = express();
+//dd
 
 const { getGameInfo } = require('../db/index');
+
+
+console.log(process.env.PG_PASS)
 
 app.use(express.json());
 app.use(cors());
