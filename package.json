@@ -7,6 +7,7 @@
     "client:dev": "webpack-dev-server --hot --open --mode development",
     "server:dev": "nodemon server/index.js",
     "seed": "npm i -g knex && npm run seed:internal && npm un -g knex",
+    "originalseed": "npm i -g knex && npm run seed:internal && npm un -g knex",
     "seed:internal": "knex migrate:rollback && knex migrate:latest && knex seed:run",
     "lint": "eslint client/** --fix",
     "start": "node server/index.js",
@@ -58,6 +59,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "knex": "^0.21.5",

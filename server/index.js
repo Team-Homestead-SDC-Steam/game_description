@@ -5,12 +5,10 @@ const cors = require('cors');
 const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
 const app = express();
-//dd
+const bodyParser = require('body-parser')
 
-const { getGameInfo } = require('../db/index');
+const { getGameInfo ,deleteGameInfo ,addGameInfo } = require('../db/index');
 
-
-console.log(process.env.PG_PASS)
 
 app.use(express.json());
 app.use(cors());
@@ -34,6 +32,45 @@ app.get('/api/description/:gameid', async (req, res) => {
     res.status(500).json({ error: 'Error retrieving game description' });
   }
 });
+
+
+
+app.post('/api/description/:gameid', async (req,res) => {
+  const info = req.body;
+  try {
+    let addGame = await addGameInfo(info);
+    res.status(200).json(addGame);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Error retrieving game description' });
+  }
+})
+
+app.put('/api/description/:gameid', async (req,res) => {
+  const { gameid } = req.params;
+  console.log(gameid);
+  if (gameid < 1 || gameid > 100) {
+    res.status(400).json({ error: 'Invalid game id' });
+    return;
+  }
+})
+
+app.delete('/api/description/:gameid', async (req,res) => {
+  const { gameid } = req.params;
+  if (gameid < 1 || gameid > 100) {
+    res.status(400).json({ error: 'Invalid game id' });
+    return;
+  }
+
+
+  try {
+    let deletegameInfo = await deleteGameInfo(gameid);
+    res.status(200).json(deletegameInfo);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Error deleting game description' });
+  }
+})
 
 app.get('/api/media/:gameid', (req, res) => {
   fetch(`http://ec2-18-188-192-44.us-east-2.compute.amazonaws.com:3004/api/media/${req.params.gameid}`)
