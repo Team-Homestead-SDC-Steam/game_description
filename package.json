@@ -6,7 +6,7 @@
     "test": "jest --testTimeout=20000",
     "client:dev": "webpack-dev-server --hot --open --mode development",
     "server:dev": "nodemon server/index.js",
-    "seed": "npm i -g knex && npm run seed:internal && npm un -g knex",
+    "seed": "npm run seed:internal && npm un -g knex",
     "originalseed": "npm i -g knex && npm run seed:internal && npm un -g knex",
     "seed:internal": "knex migrate:rollback && knex migrate:latest && knex seed:run",
     "lint": "eslint client/** --fix",

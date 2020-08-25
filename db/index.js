@@ -35,6 +35,21 @@ const addJoinTable = (gameId,developer,publisher,platform,tableId) =>{
       )
 }
 
+const updateDesc = (description,release_date,gameid) =>{
+  return db('descriptions')
+    .where('id', gameid)
+    .update({
+      description:description,
+      release_date: release_date
+    })
+}
+
+const deleteJoinTable = (gameid) =>{
+  return db('game_join_companies')
+    .where('id_game',gameid)
+    .del()
+}
+
 /**
  * Gets game description, release date, and all developers and publishers for a gameid
  * @param {Number} gameid
@@ -80,8 +95,10 @@ exports.deleteGameInfo = async (gameid) =>{
 exports.addGameInfo = async (info) =>{
   let {description,release_date,developers,publishers} = info;
   let dataLength = await db('descriptions')
-    .count('*');
-  let gameId = Number(dataLength[0].count) + 1;
+    .max('id');
+  
+  console.log(dataLength)
+  let gameId = Number(dataLength[0].max) + 1;
 
   let addDescription = await addDesc(gameId,description,release_date);
 
@@ -94,14 +111,44 @@ exports.addGameInfo = async (info) =>{
       .where('platform',developers[i].platform)
     
     let joinTableData = await db('game_join_companies')
-      .count('*');
-    let tableId = Number(joinTableData[0].count) + 1;
+      .max('id');
+
+
+    let tableId = Number(joinTableData[0].max) + 1;
 
     let joinTable = await addJoinTable(gameId,developer,publisher,platform,tableId)
   }
 
   return gameId;
-  
-  
+};
 
-} 
+exports.putGameInfo = async(info,gameid) => {
+  let {description,release_date,developers,publishers} = info;
+
+  console.log(info)
+  let updateDescription = await updateDesc(description,release_date,gameid);
+  let deleteInfo = await db('game_join_companies')
+    .where('id_game',gameid)
+    .del();
+
+  for (let i = 0; i<developers.length; i++){
+      let developer = await db('companies')
+        .where('company',developers[i].company)
+      let publisher = await db('companies')
+        .where('company',publishers[i].company)
+      let platform = await db('platforms')
+        .where('platform',developers[i].platform)
+      
+      let joinTableData = await db('game_join_companies')
+        .max('id');
+  
+  
+      let tableId = Number(joinTableData[0].max) + 1;
+  
+      let joinTable = await addJoinTable(gameid,developer,publisher,platform,tableId)
+  }
+
+  return gameid
+
+
+}

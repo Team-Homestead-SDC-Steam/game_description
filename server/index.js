@@ -7,7 +7,7 @@ const expressStaticGzip = require('express-static-gzip');
 const app = express();
 const bodyParser = require('body-parser')
 
-const { getGameInfo ,deleteGameInfo ,addGameInfo } = require('../db/index');
+const { getGameInfo ,deleteGameInfo ,addGameInfo, putGameInfo } = require('../db/index');
 
 
 app.use(express.json());
@@ -39,7 +39,7 @@ app.post('/api/description/:gameid', async (req,res) => {
   const info = req.body;
   try {
     let addGame = await addGameInfo(info);
-    res.status(200).json(addGame);
+    res.status(200).json(info);
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: 'Error retrieving game description' });
@@ -47,11 +47,21 @@ app.post('/api/description/:gameid', async (req,res) => {
 })
 
 app.put('/api/description/:gameid', async (req,res) => {
+
   const { gameid } = req.params;
-  console.log(gameid);
+  const info = req.body;
+
   if (gameid < 1 || gameid > 100) {
     res.status(400).json({ error: 'Invalid game id' });
     return;
+  }
+
+  try {
+    let putGame = await putGameInfo(info,gameid);
+    res.status(200).json(putGame);
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: 'Error retrieving game description' });
   }
 })
 
