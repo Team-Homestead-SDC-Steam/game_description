@@ -96,8 +96,7 @@ exports.addGameInfo = async (info) =>{
   let {description,release_date,developers,publishers} = info;
   let dataLength = await db('descriptions')
     .max('id');
-  
-  console.log(dataLength)
+
   let gameId = Number(dataLength[0].max) + 1;
 
   let addDescription = await addDesc(gameId,description,release_date);
@@ -125,7 +124,6 @@ exports.addGameInfo = async (info) =>{
 exports.putGameInfo = async(info,gameid) => {
   let {description,release_date,developers,publishers} = info;
 
-  console.log(info)
   let updateDescription = await updateDesc(description,release_date,gameid);
   let deleteInfo = await db('game_join_companies')
     .where('id_game',gameid)
