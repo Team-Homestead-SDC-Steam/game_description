@@ -9,6 +9,7 @@ const bodyParser = require('body-parser')
 
 const { getGameInfo ,deleteGameInfo ,addGameInfo, putGameInfo } = require('../db/index');
 
+console.log(process.env.NODE_ENV)
 
 app.use(express.json());
 app.use(cors());
@@ -35,7 +36,8 @@ app.get('/api/description/:gameid', async (req, res) => {
 
 
 
-app.post('/api/description/:gameid', async (req,res) => {
+app.post('/api/description', async (req,res) => {
+
   const info = req.body;
   try {
     let addGame = await addGameInfo(info);
@@ -81,6 +83,8 @@ app.delete('/api/description/:gameid', async (req,res) => {
     res.status(500).json({ error: 'Error deleting game description' });
   }
 })
+
+
 
 app.get('/api/media/:gameid', (req, res) => {
   fetch(`http://ec2-18-188-192-44.us-east-2.compute.amazonaws.com:3004/api/media/${req.params.gameid}`)
