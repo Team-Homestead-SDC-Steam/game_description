@@ -8,7 +8,7 @@ const deleteDb = async () => {
       host: '127.0.0.1',
       database: 'postgres',
       port: '5432',
-      password: '',
+      password: process.env.PG_PASS||'',
       user: 'postgres'
     }
   });

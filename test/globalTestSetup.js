@@ -1,4 +1,5 @@
 const knex = require('knex');
+require('dotenv').config()
 
 const createDb = async () => {
   const dbConnection = knex({
@@ -8,7 +9,7 @@ const createDb = async () => {
       host: '127.0.0.1',
       database: 'postgres',
       port: '5432',
-      password: '',
+      password: process.env.PG_PASS||'',
       user: 'postgres'
     }
   });

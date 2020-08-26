@@ -6,7 +6,7 @@ module.exports = {
     connection: {
       host: '127.0.0.1',
       user: 'postgres',
-      password: process.env.PG_PASS || '',
+      password: process.env.PG_PASS||'',
       database: 'steam_game_descriptions_test'
     },
     migrations: {
