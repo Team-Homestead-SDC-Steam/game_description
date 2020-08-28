@@ -20,7 +20,7 @@ exports.seed = function(knex) {
         { id: 14, company: 'Bethesda' },
         { id: 15, company: 'Grinding Gear Games' },
         { id: 16, company: 'Aspyr' },
-        { id: 17, company: 'Annapurna Interactive' }
+        { id: 17, company: 'Annapurna Interactive' },
         { id: 18, company: 'Mobius Digital' },
         { id: 19, company: 'Microsoft' },
         { id: 21, company: 'Electric Arts' },
