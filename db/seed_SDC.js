@@ -45,7 +45,7 @@ function writeTenMillionJoinTables(writer, encoding, callback) {
   let i = 1000;
   let id = 0;
   let primaryKey = 0;
-  let platformIds = [1, 2, 3];
+  
 
 
 
@@ -55,15 +55,17 @@ function writeTenMillionJoinTables(writer, encoding, callback) {
       i -= 1;
       id += 1;
 
-
+      let platformIds = [1, 2, 3];
       let seedArray = new Array(Math.ceil(Math.random() * 3)).fill(id);
       for(let j = 0; j<seedArray.length ; j++){
         primaryKey++
         let developer = Math.ceil(Math.random() * 50);
         let publisher =  Math.ceil(Math.random() * 50);
         let randIdx = Math.floor(Math.random() * platformIds.length);
+        let id_platform = platformIds[randIdx];
+        platformIds.splice(randIdx, 1);
 
-        let data = `${primaryKey},${id},${developer},${publisher},${randIdx}\n`
+        let data = `${primaryKey},${id},${developer},${publisher},${id_platform}\n`
 
         if (i === 0) {
           writer.write(data, encoding, callback);
