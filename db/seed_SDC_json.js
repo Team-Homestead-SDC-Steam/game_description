@@ -2,7 +2,32 @@ const fs = require('fs');
 const path = require('path');
 const faker = require('faker');
 
-let data = [];
+
+// Example of json object for gamedescription collection
+// {
+//     "id": 14,
+//     "description": "Dolorem mollitia veniam sed. Sapiente corporis perspiciatis eveniet architecto perferendis culpa qui aliquid. Est laboriosam facere. Consequatur sequi quibusdam nam cumque neque. Dolor eligendi est quae dolorem harum nobis. Veritatis dignissimos dolorum quas sit eius repellat et dignissimos quibusdam. Esse quo qui aut. Fugiat sit et natus illo omnis sequi sunt unde aut. Dignissimos doloribus molestiae amet aliquam expedita qui sunt autem.",
+//     "release_date": "2019-09-09T00:00:00Z",
+//     "developers": [
+//         {
+//             "id": 5,
+//             "company": "Activision",
+//             "platform": "Linux"
+//         }
+//     ],
+//     "publishers": [
+//         {
+//             "id": 17,
+//             "company": "Annapurna Interactive",
+//             "platform": "Linux"
+//         }
+//     ]
+// }
+
+
+const writejson = fs.createWriteStream('descriptionJSON_test.json');
+
+writejson.write('[')
 
 
 let companyTable = [
@@ -66,73 +91,86 @@ let platformTable = [
 
 
 
-function writeJsonData(cb) {
-    let i = 1;
+function writeJsonData(id) {
+    let i = id;
     let msIn10Years = 1000 * 60 * 60 * 24 * 365 * 10;
 
 
-    while (i < 10000000) {
-        let platformIds = [1, 2, 3];
 
-        let obj = {
-            id: i,
-            description: faker.fake('{{lorem.paragraph}} {{lorem.paragraph}}'),
-            release_date: new Date(Date.now() - Math.floor(Math.random() * msIn10Years)).toISOString(),
-            developers: [],
-            publishers: []
+    let platformIds = [1, 2, 3];
 
-        }
-
-        let randomNumber = Math.ceil(Math.random() * 3);
-
-        for(let j = 0; j<randomNumber;j++){
-            
-            let randIdx = Math.floor(Math.random() * platformIds.length);
-            let randomPlatform = platformIds[randIdx];
-            platformIds.splice(randIdx, 1);
-
-            let copyCompanyTable = Array.from(companyTable)
-
-            let randomDevObj = copyCompanyTable[Math.ceil(Math.random() * 50)-1];
-            let randomPubObj = copyCompanyTable[Math.ceil(Math.random() * 50)-1];
-
-            
-            randomDevObj['platform'] = platformTable[randomPlatform-1];
-            randomPubObj['platform'] = platformTable[randomPlatform-1];
-
-            obj.developers.push(randomDevObj);
-            obj.publishers.push(randomPubObj);
-
-        }
-        data.push(obj);
-        i++;
+      // initilize object with id,description,release_date,developers,publishers
+    let obj = {
+        id: i,
+        description: faker.fake('{{lorem.paragraph}} {{lorem.paragraph}}'),
+        release_date: new Date(Date.now() - Math.floor(Math.random() * msIn10Years)).toISOString(),
+        developers: [],
+        publishers: []
 
     }
 
-    cb();
+    let randomNumber = Math.ceil(Math.random() * 3);
+
+    for (let j = 0; j < randomNumber; j++) {
+
+        // for choosing a platform
+        let randIdx = Math.floor(Math.random() * platformIds.length);
+        let randomPlatform = platformIds[randIdx];
+        platformIds.splice(randIdx, 1);
+
+        //copy a table for company so that it doesnt mutate the original table
+        let copyCompanyTable = Array.from(companyTable)
+
+        let randomDevObj = copyCompanyTable[Math.ceil(Math.random() * 50) - 1];
+        let randomPubObj = copyCompanyTable[Math.ceil(Math.random() * 50) - 1];
+
+        // add a platform to company object
+        randomDevObj['platform'] = platformTable[randomPlatform - 1].platform;
+        randomPubObj['platform'] = platformTable[randomPlatform - 1].platform;
+
+        obj.developers.push(randomDevObj);
+        obj.publishers.push(randomPubObj);
+
+    }
+
+    return obj
+
+
+
 }
 
-writeJsonData(()=>{
-    fs.writeFileSync(path.resolve('data.json'),JSON.stringify(data));
+
+function writeTenMillionJson(writer,encoding,callback){
+  let i = 1000;
+  // let i = 1000
+  let id =0;
+  function write() {
+    let ok = true;
+    do {
+      i -= 1;
+      id += 1;
+
+      if(id !== 1000){
+        var data = JSON.stringify(writeJsonData(id))+','
+      }else{
+        var data = JSON.stringify(writeJsonData(id))
+      }
+      
+      if (i === 0) {
+        writer.write(data, encoding, callback);
+      } else {
+        ok = writer.write(data, encoding);
+      }
+    } while (i > 0 && ok);
+    if (i > 0) {
+      writer.once('drain', write);
+    }
+  }
+  write();
+}
+
+writeTenMillionJson(writejson,'utf-8', ()=>{
+    writejson.write(']')
+    console.log('finished json')
+    writejson.end();
 })
-
-
-// {
-//     "id": 14,
-//     "description": "Dolorem mollitia veniam sed. Sapiente corporis perspiciatis eveniet architecto perferendis culpa qui aliquid. Est laboriosam facere. Consequatur sequi quibusdam nam cumque neque. Dolor eligendi est quae dolorem harum nobis. Veritatis dignissimos dolorum quas sit eius repellat et dignissimos quibusdam. Esse quo qui aut. Fugiat sit et natus illo omnis sequi sunt unde aut. Dignissimos doloribus molestiae amet aliquam expedita qui sunt autem.",
-//     "release_date": "2019-09-09T00:00:00Z",
-//     "developers": [
-//         {
-//             "id": 5,
-//             "company": "Activision",
-//             "platform": "Linux"
-//         }
-//     ],
-//     "publishers": [
-//         {
-//             "id": 17,
-//             "company": "Annapurna Interactive",
-//             "platform": "Linux"
-//         }
-//     ]
-// }

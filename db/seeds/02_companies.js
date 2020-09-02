@@ -23,6 +23,7 @@ exports.seed = function(knex) {
         { id: 17, company: 'Annapurna Interactive' },
         { id: 18, company: 'Mobius Digital' },
         { id: 19, company: 'Microsoft' },
+        { id: 20, company: 'Big Fish' },
         { id: 21, company: 'Electric Arts' },
         { id: 22, company: 'RedSpotGames' },
         { id: 23, company: 'Acheron Design' },
