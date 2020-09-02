@@ -4,7 +4,7 @@ exports.up = function(knex) {
     'CREATE TABLE descriptions (' +
       'id SERIAL PRIMARY KEY,' +
       'description TEXT,' +
-      'release_date DATE' +
+      'release_date TEXT' +
     ')'
   );
 };

@@ -2,7 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const faker = require('faker');
 
-let data = [];
+
+const writejson = fs.createWriteStream('descriptionJSON_test.json');
+writejson.write('[')
 
 
 let companyTable = [
@@ -66,54 +68,85 @@ let platformTable = [
 
 
 
-function writeJsonData(cb) {
-    let i = 1;
+function writeJsonData(id) {
+    let i = id;
     let msIn10Years = 1000 * 60 * 60 * 24 * 365 * 10;
 
 
-    while (i < 10000000) {
-        let platformIds = [1, 2, 3];
 
-        let obj = {
-            id: i,
-            description: faker.fake('{{lorem.paragraph}} {{lorem.paragraph}}'),
-            release_date: new Date(Date.now() - Math.floor(Math.random() * msIn10Years)).toISOString(),
-            developers: [],
-            publishers: []
+    let platformIds = [1, 2, 3];
 
-        }
-
-        let randomNumber = Math.ceil(Math.random() * 3);
-
-        for(let j = 0; j<randomNumber;j++){
-            
-            let randIdx = Math.floor(Math.random() * platformIds.length);
-            let randomPlatform = platformIds[randIdx];
-            platformIds.splice(randIdx, 1);
-
-            let copyCompanyTable = Array.from(companyTable)
-
-            let randomDevObj = copyCompanyTable[Math.ceil(Math.random() * 50)-1];
-            let randomPubObj = copyCompanyTable[Math.ceil(Math.random() * 50)-1];
-
-            
-            randomDevObj['platform'] = platformTable[randomPlatform-1];
-            randomPubObj['platform'] = platformTable[randomPlatform-1];
-
-            obj.developers.push(randomDevObj);
-            obj.publishers.push(randomPubObj);
-
-        }
-        data.push(obj);
-        i++;
+    let obj = {
+        id: i,
+        description: faker.fake('{{lorem.paragraph}} {{lorem.paragraph}}'),
+        release_date: new Date(Date.now() - Math.floor(Math.random() * msIn10Years)).toISOString(),
+        developers: [],
+        publishers: []
 
     }
 
-    cb();
+    let randomNumber = Math.ceil(Math.random() * 3);
+
+    for (let j = 0; j < randomNumber; j++) {
+
+        let randIdx = Math.floor(Math.random() * platformIds.length);
+        let randomPlatform = platformIds[randIdx];
+        platformIds.splice(randIdx, 1);
+
+        let copyCompanyTable = Array.from(companyTable)
+
+        let randomDevObj = copyCompanyTable[Math.ceil(Math.random() * 50) - 1];
+        let randomPubObj = copyCompanyTable[Math.ceil(Math.random() * 50) - 1];
+
+
+        randomDevObj['platform'] = platformTable[randomPlatform - 1];
+        randomPubObj['platform'] = platformTable[randomPlatform - 1];
+
+        obj.developers.push(randomDevObj);
+        obj.publishers.push(randomPubObj);
+
+    }
+
+    return obj
+
+
+
 }
 
-writeJsonData(()=>{
-    fs.writeFileSync(path.resolve('data.json'),JSON.stringify(data));
+
+function writeTenMillionJson(writer,encoding,callback){
+  let i = 1000;
+  // let i = 1000
+  let id =0;
+  function write() {
+    let ok = true;
+    do {
+      i -= 1;
+      id += 1;
+
+      if(id !== 1000){
+        var data = JSON.stringify(writeJsonData(id))+','
+      }else{
+        var data = JSON.stringify(writeJsonData(id))
+      }
+      
+      if (i === 0) {
+        writer.write(data, encoding, callback);
+      } else {
+        ok = writer.write(data, encoding);
+      }
+    } while (i > 0 && ok);
+    if (i > 0) {
+      writer.once('drain', write);
+    }
+  }
+  write();
+}
+
+writeTenMillionJson(writejson,'utf-8', ()=>{
+    writejson.write(']')
+    console.log('finished json')
+    writejson.end();
 })
 
 
