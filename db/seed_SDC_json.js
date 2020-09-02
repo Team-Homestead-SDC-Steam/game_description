@@ -3,7 +3,30 @@ const path = require('path');
 const faker = require('faker');
 
 
+// Example of json object for gamedescription collection
+// {
+//     "id": 14,
+//     "description": "Dolorem mollitia veniam sed. Sapiente corporis perspiciatis eveniet architecto perferendis culpa qui aliquid. Est laboriosam facere. Consequatur sequi quibusdam nam cumque neque. Dolor eligendi est quae dolorem harum nobis. Veritatis dignissimos dolorum quas sit eius repellat et dignissimos quibusdam. Esse quo qui aut. Fugiat sit et natus illo omnis sequi sunt unde aut. Dignissimos doloribus molestiae amet aliquam expedita qui sunt autem.",
+//     "release_date": "2019-09-09T00:00:00Z",
+//     "developers": [
+//         {
+//             "id": 5,
+//             "company": "Activision",
+//             "platform": "Linux"
+//         }
+//     ],
+//     "publishers": [
+//         {
+//             "id": 17,
+//             "company": "Annapurna Interactive",
+//             "platform": "Linux"
+//         }
+//     ]
+// }
+
+
 const writejson = fs.createWriteStream('descriptionJSON_test.json');
+
 writejson.write('[')
 
 
@@ -76,6 +99,7 @@ function writeJsonData(id) {
 
     let platformIds = [1, 2, 3];
 
+      // initilize object with id,description,release_date,developers,publishers
     let obj = {
         id: i,
         description: faker.fake('{{lorem.paragraph}} {{lorem.paragraph}}'),
@@ -89,18 +113,20 @@ function writeJsonData(id) {
 
     for (let j = 0; j < randomNumber; j++) {
 
+        // for choosing a platform
         let randIdx = Math.floor(Math.random() * platformIds.length);
         let randomPlatform = platformIds[randIdx];
         platformIds.splice(randIdx, 1);
 
+        //copy a table for company so that it doesnt mutate the original table
         let copyCompanyTable = Array.from(companyTable)
 
         let randomDevObj = copyCompanyTable[Math.ceil(Math.random() * 50) - 1];
         let randomPubObj = copyCompanyTable[Math.ceil(Math.random() * 50) - 1];
 
-
-        randomDevObj['platform'] = platformTable[randomPlatform - 1];
-        randomPubObj['platform'] = platformTable[randomPlatform - 1];
+        // add a platform to company object
+        randomDevObj['platform'] = platformTable[randomPlatform - 1].platform;
+        randomPubObj['platform'] = platformTable[randomPlatform - 1].platform;
 
         obj.developers.push(randomDevObj);
         obj.publishers.push(randomPubObj);
@@ -148,24 +174,3 @@ writeTenMillionJson(writejson,'utf-8', ()=>{
     console.log('finished json')
     writejson.end();
 })
-
-
-// {
-//     "id": 14,
-//     "description": "Dolorem mollitia veniam sed. Sapiente corporis perspiciatis eveniet architecto perferendis culpa qui aliquid. Est laboriosam facere. Consequatur sequi quibusdam nam cumque neque. Dolor eligendi est quae dolorem harum nobis. Veritatis dignissimos dolorum quas sit eius repellat et dignissimos quibusdam. Esse quo qui aut. Fugiat sit et natus illo omnis sequi sunt unde aut. Dignissimos doloribus molestiae amet aliquam expedita qui sunt autem.",
-//     "release_date": "2019-09-09T00:00:00Z",
-//     "developers": [
-//         {
-//             "id": 5,
-//             "company": "Activision",
-//             "platform": "Linux"
-//         }
-//     ],
-//     "publishers": [
-//         {
-//             "id": 17,
-//             "company": "Annapurna Interactive",
-//             "platform": "Linux"
-//         }
-//     ]
-// }

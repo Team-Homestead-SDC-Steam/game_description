@@ -18,6 +18,9 @@ function writeTenMillionDescriptions(writer, encoding, callback) {
   let msIn10Years = 1000 * 60 * 60 * 24 * 365 * 10;
 
 
+  //write function goes through while loop to generate data and write a row of data into 
+  //a file for each loop.
+  
   function write() {
     let ok = true;
     do {
@@ -44,11 +47,14 @@ function writeTenMillionJoinTables(writer, encoding, callback) {
   let i = 1000;
   // let i = 1000;
   let id = 0;
+
+  //Primary key will be the id of the table
   let primaryKey = 0;
   
 
 
-
+  //write function goes through while loop to generate data and write a row of data into 
+  //a file for each loop.
   function write() {
     let ok = true;
     do {
