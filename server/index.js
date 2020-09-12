@@ -21,12 +21,15 @@ app.get('/app/:gameid', (req, res) => {
 
 app.get('/api/description/:gameid', async (req, res) => {
   const { gameid } = req.params;
-  if (gameid < 1 || gameid > 100) {
-    res.status(400).json({ error: 'Invalid game id' });
-    return;
-  }
+  // if (gameid < 1 || gameid > 100) {
+  //   res.status(400).json({ error: 'Invalid game id' });
+  //   return;
+  // }
+
   try {
     let gameInfo = await getGameInfo(gameid);
+    console.log('gameinfo')
+    console.log(gameInfo);
     res.status(200).json(gameInfo);
   } catch (e) {
     console.error(e);
@@ -53,10 +56,10 @@ app.put('/api/description/:gameid', async (req,res) => {
   const { gameid } = req.params;
   const info = req.body;
 
-  if (gameid < 1 || gameid > 100) {
-    res.status(400).json({ error: 'Invalid game id' });
-    return;
-  }
+  // if (gameid < 1 || gameid > 100) {
+  //   res.status(400).json({ error: 'Invalid game id' });
+  //   return;
+  // }
 
   try {
     let putGame = await putGameInfo(info,gameid);
@@ -69,10 +72,10 @@ app.put('/api/description/:gameid', async (req,res) => {
 
 app.delete('/api/description/:gameid', async (req,res) => {
   const { gameid } = req.params;
-  if (gameid < 1 || gameid > 100) {
-    res.status(400).json({ error: 'Invalid game id' });
-    return;
-  }
+  // if (gameid < 1 || gameid > 100) {
+  //   res.status(400).json({ error: 'Invalid game id' });
+  //   return;
+  // }
 
 
   try {

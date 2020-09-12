@@ -33,11 +33,13 @@ export const getPathId = () => {
   let pathArr = window.location.pathname.split('/');
   let pathId = 1;
   if (pathArr.length) {
+   
     pathId = parseInt(pathArr.slice(-1)[0]);
-    if (Number.isNaN(pathId) || pathId > 100 || pathId < 1) {
-      pathId = 1;
-    }
+    // if (Number.isNaN(pathId) || pathId > 100 || pathId < 1) {
+    //   pathId = 1;
+    // }
   }
+
   return pathId;
 };
 
@@ -70,9 +72,9 @@ export const useWindowSize = () => {
    * @returns {Promise->Object}: promise which resolves to object
    */
 export const fetchGamePhoto = (gameid) => {
-  if (!gameid || gameid > 100 || gameid < 1) {
-    throw new Error('Invalid game id');
-  }
+  // if (!gameid || gameid > 100 || gameid < 1) {
+  //   throw new Error('Invalid game id');
+  // }
 
   return fetch(`/api/media/${gameid}`)
     .then(response => response.json())
@@ -101,9 +103,9 @@ export const fetchGamePhoto = (gameid) => {
  * @returns {Promise->Object|Error}
  */
 export const fetchGameInfo = (gameid) => {
-  if (!gameid || gameid > 100 || gameid < 1) {
-    throw new Error('Invalid game id');
-  }
+  // if (!gameid || gameid > 100 || gameid < 1) {
+  //   throw new Error('Invalid game id');
+  // }
 
   return fetch(`/api/description/${gameid}`)
     .then(response => response.json());

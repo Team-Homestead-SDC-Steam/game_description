@@ -3,8 +3,8 @@ const fs = require('fs');
 
 
 
-const writeDescriptions = fs.createWriteStream('descriptions_test.csv');
-const writeJoinTable = fs.createWriteStream('JoinTable_test.csv');
+const writeDescriptions = fs.createWriteStream('descriptions.csv');
+const writeJoinTable = fs.createWriteStream('JoinTable.csv');
 
 writeDescriptions.write('descriptions,release_date\n', 'utf8');
 writeJoinTable.write('id_game,id_developer,id_publisher,id_platform\n','utf8');
@@ -12,7 +12,7 @@ writeJoinTable.write('id_game,id_developer,id_publisher,id_platform\n','utf8');
 
 
 function writeTenMillionDescriptions(writer, encoding, callback) {
-  let i = 1000;
+  let i = 10000000;
   // let i = 1000
   let id = 0;
   let msIn10Years = 1000 * 60 * 60 * 24 * 365 * 10;
@@ -44,7 +44,7 @@ function writeTenMillionDescriptions(writer, encoding, callback) {
 
 
 function writeTenMillionJoinTables(writer, encoding, callback) {
-  let i = 1000;
+  let i = 10000000;
   // let i = 1000;
   let id = 0;
 

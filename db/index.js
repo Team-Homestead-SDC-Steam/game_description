@@ -56,6 +56,7 @@ const deleteJoinTable = (gameid) =>{
  * @returns {Object}
  */
 exports.getGameInfo = async (gameid) => {
+
   let devPubInfo = await db('game_join_companies')
     .where('id_game', gameid)
     .orderBy('id_platform');

@@ -44,54 +44,62 @@ const DescriptionModule = ({ gameid }) => {
 
   // On component mount, fetch relevant game information for component for a particular gameid (which is passed as props on mount)
   useEffect(() => {
-    fetchGamePhoto(gameid)
-      .then(res => {
-        if (res.error) {
-          throw new Error(res.error);
-        }
-        setGameThumbnail(res.url);
-      })
-      .catch(e => {
-        console.error(e);
-        // On fetchGamePhoto promise rejection, set default game thumbnail
-        setGameThumbnail('https://steamcdn-a.akamaihd.net/steam/apps/289070/header.jpg');
-      });
+    // fetchGamePhoto(gameid)
+    //   .then(res => {
+    //     if (res.error) {
+    //       throw new Error(res.error);
+    //     }
+    //     console.log(res.url);
+    //     setGameThumbnail(res.url);
+    //   })
+    //   .catch(e => {
+    //     console.error(e);
+    //     // On fetchGamePhoto promise rejection, set default game thumbnail
+    //     setGameThumbnail('https://steamcdn-a.akamaihd.net/steam/apps/289070/header.jpg');
+    //   });
+    setGameThumbnail('https://steamcdn-a.akamaihd.net/steam/apps/289070/header.jpg');
 
     fetchGameInfo(gameid)
       .then(res => {
         if (res.error) {
+          console.log('ddd1')
           throw new Error(res.error);
         }
         setGameInfo(res);
       })
       .catch(e => {
+        console.log('ddd2')
         // On fetchGameInfo promise rejection, keep initial game info state
         console.error(e);
       });
 
-    fetchAllGameReviews(gameid)
-      .then(res => {
-        if (res.error) {
-          throw new Error(res.error);
-        }
-        setAllReviews(res);
-      })
-      .catch(e => {
-        // On fetchAllGameReviews promise rejection, keep initial reviews state
-        console.error(e);
-      });
+    // fetchAllGameReviews(gameid)
+    //   .then(res => {
+    //     if (res.error) {
+    //       throw new Error(res.error);
+    //     }
+    //     setAllReviews(res);
+    //   })
+    //   .catch(e => {
+    //     // On fetchAllGameReviews promise rejection, keep initial reviews state
+    //     console.error(e);
+    //   });
+    // setAllReviews((Math.floor(Math.random()*99999)+40000).toString());
 
-    fetchRecentGameReviews(gameid)
-      .then(res => {
-        if (res.error) {
-          throw new Error(res.error);
-        }
-        setRecentReviews(res);
-      })
-      .catch(e => {
-        // On fetchRecentGameReviews promise rejection, keep initial reviews state
-        console.error(e);
-      });
+    // fetchRecentGameReviews(gameid)
+    //   .then(res => {
+    //     if (res.error) {
+
+    //       throw new Error(res.error);
+    //     }
+    //     setRecentReviews(res);
+    //   })
+    //   .catch(e => {
+
+    //     // On fetchRecentGameReviews promise rejection, keep initial reviews state
+    //     console.error(e);
+    //   });
+    // setRecentReviews(Math.floor(Math.random()*9999)+300);
   }, []);
 
   return (
