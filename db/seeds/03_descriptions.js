@@ -19,8 +19,9 @@ exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex('descriptions').del()
     .then(() => {
+      console.log('start seeding for descriptions')
       // Inserts seed entries
-      return knex.raw("COPY descriptions (description,release_date) FROM '/home/andyoe/Desktop/gameDescription/db/seeds/descriptions_test.csv' WITH (FORMAT CSV, DELIMITER ',', HEADER);")
+      return knex.raw("COPY descriptions (description,release_date) FROM '/home/andyoe/Desktop/gameDescription/db/seeds/descriptions.csv' WITH (FORMAT CSV, DELIMITER ',', HEADER);")
     });
 };
 
