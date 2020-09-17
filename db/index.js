@@ -1,3 +1,4 @@
+const { json } = require('body-parser');
 const db = require('./knex');
 
 /**
@@ -95,6 +96,11 @@ exports.deleteGameInfo = async (gameid) =>{
 
 exports.addGameInfo = async (info) =>{
   let {description,release_date,developers,publishers} = info;
+
+  if(typeof developers ==='string' || typeof publishers === 'string'){
+    developers = JSON.parse(developers);
+    publishers = JSON.parse(publishers);
+  }
   let dataLength = await db('descriptions')
     .max('id');
 
