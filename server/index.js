@@ -1,3 +1,4 @@
+require('newrelic');
 require('dotenv').config();
 const path = require('path');
 const fetch = require('node-fetch');
@@ -9,7 +10,7 @@ const bodyParser = require('body-parser')
 
 const { getGameInfo ,deleteGameInfo ,addGameInfo, putGameInfo } = require('../db/index');
 
-console.log(process.env.NODE_ENV)
+// console.log(process.env.NODE_ENV)
 
 app.use(express.json());
 app.use(cors());
