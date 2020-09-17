@@ -96,12 +96,10 @@ exports.deleteGameInfo = async (gameid) =>{
 
 exports.addGameInfo = async (info) =>{
   let {description,release_date,developers,publishers} = info;
-  console.log(info);
+
   if(typeof developers ==='string' || typeof publishers === 'string'){
     developers = JSON.parse(developers);
     publishers = JSON.parse(publishers);
-
-    console.log(developers,publishers)
   }
   let dataLength = await db('descriptions')
     .max('id');
