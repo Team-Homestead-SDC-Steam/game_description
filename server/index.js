@@ -8,7 +8,7 @@ const expressStaticGzip = require('express-static-gzip');
 const app = express();
 const bodyParser = require('body-parser')
 
-const { getGameInfo ,deleteGameInfo ,addGameInfo, putGameInfo } = require('../db/index');
+const { getGameInfo ,deleteGameInfo ,addGameInfo, putGameInfo, testGame } = require('../db/index');
 
 // console.log(process.env.NODE_ENV)
 
@@ -29,15 +29,12 @@ app.get('/api/description/:gameid', async (req, res) => {
 
   try {
     let gameInfo = await getGameInfo(gameid);
-    console.log('gameinfo')
-    console.log(gameInfo);
     res.status(200).json(gameInfo);
   } catch (e) {
     console.error(e);
     res.status(500).json({ error: 'Error retrieving game description' });
   }
 });
-
 
 
 app.post('/api/description', async (req,res) => {

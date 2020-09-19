@@ -1,10 +1,13 @@
 const { json } = require('body-parser');
+const { insert } = require('./knex');
 const db = require('./knex');
 
 /**
  * @param {String} gameid
  * @returns {Array} array whose first and only entry is game description object
  */
+
+
 const getDescById = (gameid) => {
   return db('descriptions')
     .where('id', gameid);
@@ -16,19 +19,17 @@ const deleteDescById = (gameid) =>{
     .del();
 }
 
-const addDesc = (gameId,description,release_date) =>{
+const addDesc = async (description,release_date) =>{
   return db('descriptions')
     .insert({
-      id:gameId,
       description:description, 
       release_date:release_date}
     )
 }
 
-const addJoinTable = (gameId,developer,publisher,platform,tableId) =>{
+const addJoinTable = async (gameId,developer,publisher,platform) =>{
   return db('game_join_companies')
     .insert({
-      id:tableId,
       id_game:gameId, 
       id_developer:Number(developer[0].id),
       id_publisher:Number(publisher[0].id), 
@@ -101,12 +102,15 @@ exports.addGameInfo = async (info) =>{
     developers = JSON.parse(developers);
     publishers = JSON.parse(publishers);
   }
+  
+
+  let addDescription = await addDesc(description,release_date);
+
+  
   let dataLength = await db('descriptions')
     .max('id');
 
-  let gameId = Number(dataLength[0].max) + 1;
-
-  let addDescription = await addDesc(gameId,description,release_date);
+  let gameId = Number(dataLength[0].max);
 
   for (let i = 0; i<developers.length; i++){
     let developer = await db('companies')
@@ -116,17 +120,14 @@ exports.addGameInfo = async (info) =>{
     let platform = await db('platforms')
       .where('platform',developers[i].platform)
     
-    let joinTableData = await db('game_join_companies')
-      .max('id');
-
-
-    let tableId = Number(joinTableData[0].max) + 1;
-
-    let joinTable = await addJoinTable(gameId,developer,publisher,platform,tableId)
+    
+    let joinTable = await addJoinTable(gameId,developer,publisher,platform)
   }
 
   return gameId;
 };
+
+
 
 exports.putGameInfo = async(info,gameid) => {
   let {description,release_date,developers,publishers} = info;
@@ -143,17 +144,17 @@ exports.putGameInfo = async(info,gameid) => {
         .where('company',publishers[i].company)
       let platform = await db('platforms')
         .where('platform',developers[i].platform)
-      
-      let joinTableData = await db('game_join_companies')
-        .max('id');
   
-  
-      let tableId = Number(joinTableData[0].max) + 1;
-  
-      let joinTable = await addJoinTable(gameid,developer,publisher,platform,tableId)
+      let joinTable = await addJoinTable(gameid,developer,publisher,platform)
   }
 
   return gameid
 
 
 }
+
+
+
+
+
+
