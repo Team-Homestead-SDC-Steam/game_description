@@ -150,11 +150,4 @@ exports.putGameInfo = async(info,gameid) => {
 
   return gameid
 
-
 }
-
-
-
-
-
-
