@@ -116,3 +116,13 @@ db/descriptions.csv
 db/JoinTable.csv
 db/descriptionJSON.csv
 db/descriptionJSON.json
+
+
+
+#stressTestfiles
+stressTestafter.txt
+stressTestbefore.txt
+stressTestGetafter.txt
+stressTestGetbefore.txt
+stressTestPostafter.txt
+stressTEstPostbefore.txt

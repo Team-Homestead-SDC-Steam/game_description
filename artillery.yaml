@@ -24,28 +24,50 @@ config:
       - "gameid"
 
     order: "sequence"
+  variables:
+    gameids:
+      - "1"
+      - "10"
+      - "100"
+      - "1000"
+      - "10000"
+      - "100000"
+      - "1000000"
+      - "10000000"
 
 scenarios:
+  - name: "Stres Test index.html"
+    flow:
+      - get:
+          url: "/app/{{gameids}}"
   - name: "Stress Test GET"
     flow:
       - get:
-          url: /"api/description/{{gameid}}"
+          url: "/api/description/{{gameids}}"
   - name: 'Stress Test Post'
     flow:
       - post:
           url: "/api/description"
           json:
-            description: "Voluptates ipsam est beatae ipsa. Veniam ut commodi amet eaque officiis vero natus veniam. Est sunt repellendus vel dignissimos incidunt rerum incidunt minus ad. Esse id voluptas praesentium sed sed mollitia deleniti autem velit. Et at consequatur ratione accusamus. Et a non culpa velit sed dolorem. Dolor vel ad. Voluptas temporibus omnis quia ea. Quo quos aut fugit consequuntur alias praesentium voluptatum commodi ut. Et corporis nostrum ea consequatur quia ut corrupti. Placeat qui tenetur qui est cumque ad nam reprehenderit."
+            description: "test Voluptates ipsam est beatae ipsa. Veniam ut commodi amet eaque officiis vero natus veniam. Est sunt repellendus vel dignissimos incidunt rerum incidunt minus ad. Esse id voluptas praesentium sed sed mollitia deleniti autem velit. Et at consequatur ratione accusamus. Et a non culpa velit sed dolorem. Dolor vel ad. Voluptas temporibus omnis quia ea. Quo quos aut fugit consequuntur alias praesentium voluptatum commodi ut. Et corporis nostrum ea consequatur quia ut corrupti. Placeat qui tenetur qui est cumque ad nam reprehenderit."
             release_date: "2018-07-07T00:00:00Z"
             developers: "[{
             \"id\": 10,
             \"company\": \"Bungie\",
             \"platform\": \"Mac\"
+            },{
+            \"id\": 12,
+            \"company\": \"Take-Two Interactive\",
+            \"platform\": \"Windows\"
             }]"
             publishers: "[{
             \"id\": 13,
             \"company\": \"Blizzard Entertainment\",
             \"platform\": \"Mac\"
+            },{
+            \"id\": 2,
+            \"company\": \"Konami\",
+            \"platform\": \"Windows\"
             }]"
           expect:
             - statusCode: 200

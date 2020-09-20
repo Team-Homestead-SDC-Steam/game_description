@@ -1,0 +1,545 @@
+
+Started phase 0 (1 to 10), duration: 60s @ 14:04:50(-0500) 2020-09-19
+Report @ 14:05:00(-0500) 2020-09-19
+Elapsed time: 10 seconds
+  Scenarios launched:  10
+  Scenarios completed: 9
+  Requests completed:  9
+  Mean response/sec: 1.25
+  Response time (msec):
+    min: 97.2
+    max: 274.5
+    median: 113
+    p95: 274.5
+    p99: 274.5
+  Codes:
+    200: 9
+
+Report @ 14:05:10(-0500) 2020-09-19
+Elapsed time: 20 seconds
+  Scenarios launched:  26
+  Scenarios completed: 27
+  Requests completed:  27
+  Mean response/sec: 2.66
+  Response time (msec):
+    min: 68.8
+    max: 143.6
+    median: 105.8
+    p95: 143.2
+    p99: 143.6
+  Codes:
+    200: 27
+
+Report @ 14:05:20(-0500) 2020-09-19
+Elapsed time: 30 seconds
+  Scenarios launched:  49
+  Scenarios completed: 49
+  Requests completed:  49
+  Mean response/sec: 4.95
+  Response time (msec):
+    min: 55.4
+    max: 192.2
+    median: 93.6
+    p95: 149.7
+    p99: 192.2
+  Codes:
+    200: 49
+
+Report @ 14:05:30(-0500) 2020-09-19
+Elapsed time: 40 seconds
+  Scenarios launched:  61
+  Scenarios completed: 61
+  Requests completed:  61
+  Mean response/sec: 6.17
+  Response time (msec):
+    min: 54.6
+    max: 733.5
+    median: 86.3
+    p95: 174.2
+    p99: 729
+  Codes:
+    200: 61
+
+Report @ 14:05:40(-0500) 2020-09-19
+Elapsed time: 50 seconds
+  Scenarios launched:  78
+  Scenarios completed: 78
+  Requests completed:  78
+  Mean response/sec: 7.82
+  Response time (msec):
+    min: 55.6
+    max: 226.6
+    median: 83.1
+    p95: 127.9
+    p99: 216.8
+  Codes:
+    200: 78
+
+Report @ 14:05:50(-0500) 2020-09-19
+Elapsed time: 1 minute, 0 seconds
+  Scenarios launched:  94
+  Scenarios completed: 94
+  Requests completed:  94
+  Mean response/sec: 9.41
+  Response time (msec):
+    min: 50.2
+    max: 867.2
+    median: 71.5
+    p95: 512.9
+    p99: 830
+  Codes:
+    200: 94
+
+Started phase 1 (10 to 100), duration: 120s @ 14:05:51(-0500) 2020-09-19
+Report @ 14:06:00(-0500) 2020-09-19
+Elapsed time: 1 minute, 10 seconds
+  Scenarios launched:  116
+  Scenarios completed: 113
+  Requests completed:  113
+  Mean response/sec: 11.61
+  Response time (msec):
+    min: 53.9
+    max: 1186.6
+    median: 146.1
+    p95: 714.3
+    p99: 965.7
+  Codes:
+    200: 113
+
+Report @ 14:06:10(-0500) 2020-09-19
+Elapsed time: 1 minute, 20 seconds
+  Scenarios launched:  188
+  Scenarios completed: 177
+  Requests completed:  177
+  Mean response/sec: 18.82
+  Response time (msec):
+    min: 49.9
+    max: 1025.1
+    median: 349.4
+    p95: 932.8
+    p99: 1002.1
+  Codes:
+    200: 177
+
+Report @ 14:06:20(-0500) 2020-09-19
+Elapsed time: 1 minute, 30 seconds
+  Scenarios launched:  271
+  Scenarios completed: 185
+  Requests completed:  185
+  Mean response/sec: 27.21
+  Response time (msec):
+    min: 609.1
+    max: 3877.7
+    median: 2458.1
+    p95: 3765.7
+    p99: 3866.6
+  Codes:
+    200: 185
+
+Report @ 14:06:30(-0500) 2020-09-19
+Elapsed time: 1 minute, 40 seconds
+  Scenarios launched:  371
+  Scenarios completed: 96
+  Requests completed:  96
+  Mean response/sec: 37.44
+  Response time (msec):
+    min: 3918.1
+    max: 9862.5
+    median: 5755.2
+    p95: 9387
+    p99: 9852.9
+  Codes:
+    200: 96
+  Errors:
+    ESOCKETTIMEDOUT: 4
+
+Report @ 14:06:40(-0500) 2020-09-19
+Elapsed time: 1 minute, 50 seconds
+  Scenarios launched:  428
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 42.84
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 371
+
+Report @ 14:06:50(-0500) 2020-09-19
+Elapsed time: 2 minutes, 0 seconds
+  Scenarios launched:  471
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 47.24
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 428
+
+Report @ 14:07:00(-0500) 2020-09-19
+Elapsed time: 2 minutes, 10 seconds
+  Scenarios launched:  593
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 59.36
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 471
+
+Report @ 14:07:10(-0500) 2020-09-19
+Elapsed time: 2 minutes, 20 seconds
+  Scenarios launched:  664
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 66.47
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 592
+
+Report @ 14:07:20(-0500) 2020-09-19
+Elapsed time: 2 minutes, 30 seconds
+  Scenarios launched:  730
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 73.22
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 665
+
+Report @ 14:07:30(-0500) 2020-09-19
+Elapsed time: 2 minutes, 40 seconds
+  Scenarios launched:  799
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 80.14
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 730
+
+Report @ 14:07:40(-0500) 2020-09-19
+Elapsed time: 2 minutes, 50 seconds
+  Scenarios launched:  887
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 88.79
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 799
+
+Report @ 14:07:50(-0500) 2020-09-19
+Elapsed time: 3 minutes, 0 seconds
+  Scenarios launched:  973
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 97.49
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 887
+
+Started phase 2 (100 to 1000), duration: 180s @ 14:07:51(-0500) 2020-09-19
+Report @ 14:08:00(-0500) 2020-09-19
+Elapsed time: 3 minutes, 10 seconds
+  Scenarios launched:  209
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 20.92
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 973
+
+Report @ 14:08:10(-0500) 2020-09-19
+Elapsed time: 3 minutes, 20 seconds
+  Scenarios launched:  102
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 10.47
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 209
+
+Report @ 14:08:20(-0500) 2020-09-19
+Elapsed time: 3 minutes, 30 seconds
+  Scenarios launched:  154
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 15.49
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 102
+
+Report @ 14:08:30(-0500) 2020-09-19
+Elapsed time: 3 minutes, 40 seconds
+  Scenarios launched:  194
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 19.46
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 154
+
+Report @ 14:08:40(-0500) 2020-09-19
+Elapsed time: 3 minutes, 50 seconds
+  Scenarios launched:  210
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 21.08
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 194
+
+Report @ 14:08:50(-0500) 2020-09-19
+Elapsed time: 4 minutes, 0 seconds
+  Scenarios launched:  262
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 26.52
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 210
+
+Report @ 14:09:00(-0500) 2020-09-19
+Elapsed time: 4 minutes, 10 seconds
+  Scenarios launched:  272
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 27.34
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 262
+
+Report @ 14:09:10(-0500) 2020-09-19
+Elapsed time: 4 minutes, 20 seconds
+  Scenarios launched:  282
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 28.43
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 271
+
+Report @ 14:09:20(-0500) 2020-09-19
+Elapsed time: 4 minutes, 30 seconds
+  Scenarios launched:  311
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 31.19
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 283
+
+Report @ 14:09:30(-0500) 2020-09-19
+Elapsed time: 4 minutes, 40 seconds
+  Scenarios launched:  383
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 38.65
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 311
+
+Report @ 14:09:40(-0500) 2020-09-19
+Elapsed time: 4 minutes, 50 seconds
+  Scenarios launched:  386
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 38.77
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 383
+
+Report @ 14:09:50(-0500) 2020-09-19
+Elapsed time: 5 minutes, 0 seconds
+  Scenarios launched:  380
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 38.1
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 385
+
+Report @ 14:10:00(-0500) 2020-09-19
+Elapsed time: 5 minutes, 10 seconds
+  Scenarios launched:  435
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 43.63
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 381
+
+Report @ 14:10:10(-0500) 2020-09-19
+Elapsed time: 5 minutes, 20 seconds
+  Scenarios launched:  464
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 46.63
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 435
+
+Report @ 14:10:20(-0500) 2020-09-19
+Elapsed time: 5 minutes, 30 seconds
+  Scenarios launched:  478
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 48.08
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 464
+
+Report @ 14:10:30(-0500) 2020-09-19
+Elapsed time: 5 minutes, 40 seconds
+  Scenarios launched:  500
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 50.1
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 477
+
+Report @ 14:10:40(-0500) 2020-09-19
+Elapsed time: 5 minutes, 50 seconds
+  Scenarios launched:  516
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 51.81
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 501
+
+Report @ 14:10:50(-0500) 2020-09-19
+Elapsed time: 6 minutes, 0 seconds
+  Scenarios launched:  533
+  Scenarios completed: 0
+  Requests completed:  0
+  Mean response/sec: 53.62
+  Response time (msec):
+    min: NaN
+    max: NaN
+    median: NaN
+    p95: NaN
+    p99: NaN
+  Errors:
+    ESOCKETTIMEDOUT: 516
