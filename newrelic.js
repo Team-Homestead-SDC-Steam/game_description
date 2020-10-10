@@ -13,7 +13,7 @@ exports.config = {
   /**
    * Your New Relic license key.
    */
-  license_key: 'b897d2f31fe686622945db42d549b4462713NRAL',
+  license_key: 'fcb7986d4fbe04b2a349800aed20f7695cd7NRAL',
   /**
    * This setting controls distributed tracing.
    * Distributed tracing lets you see the path that a request takes through your
@@ -36,7 +36,7 @@ exports.config = {
      * issues with the agent, 'info' and higher will impose the least overhead on
      * production applications.
      */
-    level: 'trace'
+    level: 'info'
   },
   /**
    * When true, all request headers except for those listed in attributes.exclude

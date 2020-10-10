@@ -7,10 +7,37 @@ const express = require('express');
 const expressStaticGzip = require('express-static-gzip');
 const app = express();
 const bodyParser = require('body-parser')
+const redis = require("redis");
 
 const { getGameInfo ,deleteGameInfo ,addGameInfo, putGameInfo, testGame } = require('../db/index');
 
 // console.log(process.env.NODE_ENV)
+
+const redis_client = redis.createClient(6379,'52.14.132.91')
+
+//const redis_client = redis.createClient(6379)
+redis_client.on('connect', function() {
+  console.log('connected to redis');
+});
+
+let cacheRedis = () =>{
+  return (req,res,next)=>{
+    const id = req.params.gameid;
+    console.log(id,'gameid caching')
+
+  redis_client.get(`${id}`,(err,data)=>{
+    if(err){
+      console.log(err);
+      res.status(500).send(err)
+    }
+    if(data!== null){
+      res.type('json').send(data);
+    }else{
+      next();
+    }
+  })
+}
+}
 
 app.use(express.json());
 app.use(cors());
@@ -20,15 +47,12 @@ app.get('/app/:gameid', (req, res) => {
   res.sendFile(path.resolve(__dirname, '..', 'public', 'index.html'));
 });
 
-app.get('/api/description/:gameid', async (req, res) => {
+app.get('/api/description/:gameid',cacheRedis(),async (req, res) => {
   const { gameid } = req.params;
-  // if (gameid < 1 || gameid > 100) {
-  //   res.status(400).json({ error: 'Invalid game id' });
-  //   return;
-  // }
 
   try {
     let gameInfo = await getGameInfo(gameid);
+    redis_client.setex(`${gameid}`,60 * 60 * 24,JSON.stringify(gameInfo))
     res.status(200).json(gameInfo);
   } catch (e) {
     console.error(e);
