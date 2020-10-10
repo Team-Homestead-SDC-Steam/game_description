@@ -31,6 +31,8 @@ These are the related Steam services, of which [Game Description](https://github
 
 ## Table of Contents
 
+The table of Contents were referenced from [Team-Bell's steam-review's](https://github.com/FEC-Bell/steam-reviews) readme
+
 1. [Usage](#usage)
 2. [Requirements](#requirements)
 3. [Development](#development)
