@@ -44,6 +44,21 @@ const DescriptionModule = ({ gameid }) => {
 
   // On component mount, fetch relevant game information for component for a particular gameid (which is passed as props on mount)
   useEffect(() => {
+
+    let thumbnails=[
+      'https://steamcdn-a.akamaihd.net/steam/apps/289070/header.jpg',
+      'https://steamcdn-a.akamaihd.net/steam/apps/395200/header.jpg',
+      'https://steamcdn-a.akamaihd.net/steam/apps/400360/header.jpg',
+      'https://steamcdn-a.akamaihd.net/steam/apps/390670/header.jpg',
+      'https://steamcdn-a.akamaihd.net/steam/apps/378644/header.jpg',
+      'https://steamcdn-a.akamaihd.net/steam/apps/1017900/header.jpg',
+      'https://steamcdn-a.akamaihd.net/steam/apps/773840/header.jpg',
+      'https://steamcdn-a.akamaihd.net/steam/apps/1337010/header.jpg',
+      'https://steamcdn-a.akamaihd.net/steam/apps/795990/header.jpg',
+      'https://steamcdn-a.akamaihd.net/steam/apps/811070/header.jpg'
+    ]
+
+    let lastnumber = Number(gameid.toString().split('').pop())
     // fetchGamePhoto(gameid)
     //   .then(res => {
     //     if (res.error) {
@@ -57,18 +72,16 @@ const DescriptionModule = ({ gameid }) => {
     //     // On fetchGamePhoto promise rejection, set default game thumbnail
     //     setGameThumbnail('https://steamcdn-a.akamaihd.net/steam/apps/289070/header.jpg');
     //   });
-    setGameThumbnail('https://steamcdn-a.akamaihd.net/steam/apps/289070/header.jpg');
+    setGameThumbnail(thumbnails[lastnumber]);
 
     fetchGameInfo(gameid)
       .then(res => {
         if (res.error) {
-          console.log('ddd1')
           throw new Error(res.error);
         }
         setGameInfo(res);
       })
       .catch(e => {
-        console.log('ddd2')
         // On fetchGameInfo promise rejection, keep initial game info state
         console.error(e);
       });

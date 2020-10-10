@@ -126,3 +126,8 @@ stressTestGetafter.txt
 stressTestGetbefore.txt
 stressTestPostafter.txt
 stressTestPostbefore.txt
+
+#pem files
+
+andy-sdc.pem
+andysdc.pem

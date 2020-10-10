@@ -4,10 +4,26 @@ config:
     timeout: 10 # Responses have to be sent within 10 seconds or the request will be aborted
 
   phases:
-    - duration: 1
-      arrivalRate: 2
+    - duration: 60
+      arrivalRate: 1
+      rampTo: 10
       name: "1 to 10"
+    - duration: 120
+      arrivalRate: 10
+      rampTo: 100
+      name: "10 to 100"
+    - duration: 180
+      arrivalRate: 100
+      rampTo: 10000
+      name: "100 to 1000"
 
+  payload:
+    # path is relative to the location of the test script
+    path: "./artillerydata.csv"
+    fields:
+      - "gameid"
+
+    order: "sequence"
   variables:
     gameids:
       - "1"
@@ -19,15 +35,39 @@ config:
       - "1000000"
       - "10000000"
 
-
-  payload:
-    # path is relative to the location of the test script
-    path: "./artillerydata.csv"
-    fields:
-      - "gameid"
-
 scenarios:
+  - name: "Stres Test index.html"
+    flow:
+      - get:
+          url: "/app/{{gameids}}"
   - name: "Stress Test GET"
     flow:
       - get:
           url: "/api/description/{{gameids}}"
+  - name: 'Stress Test Post'
+    flow:
+      - post:
+          url: "/api/description"
+          json:
+            description: "test Voluptates ipsam est beatae ipsa. Veniam ut commodi amet eaque officiis vero natus veniam. Est sunt repellendus vel dignissimos incidunt rerum incidunt minus ad. Esse id voluptas praesentium sed sed mollitia deleniti autem velit. Et at consequatur ratione accusamus. Et a non culpa velit sed dolorem. Dolor vel ad. Voluptas temporibus omnis quia ea. Quo quos aut fugit consequuntur alias praesentium voluptatum commodi ut. Et corporis nostrum ea consequatur quia ut corrupti. Placeat qui tenetur qui est cumque ad nam reprehenderit."
+            release_date: "2018-07-07T00:00:00Z"
+            developers: "[{
+            \"id\": 10,
+            \"company\": \"Bungie\",
+            \"platform\": \"Mac\"
+            },{
+            \"id\": 12,
+            \"company\": \"Take-Two Interactive\",
+            \"platform\": \"Windows\"
+            }]"
+            publishers: "[{
+            \"id\": 13,
+            \"company\": \"Blizzard Entertainment\",
+            \"platform\": \"Mac\"
+            },{
+            \"id\": 2,
+            \"company\": \"Konami\",
+            \"platform\": \"Windows\"
+            }]"
+          expect:
+            - statusCode: 200
